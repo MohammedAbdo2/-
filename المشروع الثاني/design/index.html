@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <script>
+<!-- JavaScript function to process the coordinates just entered -->
+function processCoords () {
+var top = 90;
+var left = -180;
+var bottom = -90;
+var right = 180;
+var form = document.forms["location"];
+var lon = form["lon"].value,
+lat = form["lat"].value;
+if (lat > top || lat < bottom) {
+alert("Latitude must be between" + bottom + "and" + top);
+return;
+};
+if (lon < left || lon > right) {
+alert("Longitude must be between" + left + "and" + right);
+return;
+};
+<!-- Get map image object & calculate the maximum width/height in degrees -->
+	var basemap = document.getElementById("worldmap");
+	var width_deg = right-left;
+	var height_deg = top-bottom;
+	alert("Map image is of width " + basemap.width + " by height " + basemap.height + " pixels. " + "max degrees width is " + width_deg + " and max deg height is " + height_deg + " degrees.");
+<!-- Calc x,y pixel position from lat/long coords -->
+var x = ((1.0 * lon + 180) / width_deg )* basemap.width;
+var y = (180 - ((1.0 * lat) + 90)) / (1.0 * height_deg) * basemap.height; 
+alert("x:" + x + "y:" + y);
+<!-- Adjust pixel coords by location of image within window -->
+x+= basemap.offsetLeft;
+y+= basemap.offsetTop;
+<!-- Obtain the pin marker object and set its attributes to the desired location and to be visible -->
+var pin = document.getElementById("pinmarker");
+<!-- Adjust the pin location by the size of the pin marker image -->
+x -= pin.width / 2 - 4;
+y -= pin.height-2;
+pin.style.position="absolute";
+pin.style.visibility="visible";
+pin.style.top=y;
+pin.style.left=x;
+}
+</script>
+</script>
+    <meta charset="UTF-8" /> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>قسم المساحة-الكلية التقنية بأبها</title>
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="css/all.min.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Start Header -->
+    <div class="header" id="header">
+      <div >
+       
+        <ul class="main-nav">
+		 <a href="#" class="logo">
+          <img src="imgs/HATIM.JPEG" alt="logo" />
+          المؤسسة العامة للتدريب التقني والمهني
+        </a>
+          <li><a href="#college" class="" >الكليات</a></li>
+          <li><a href="#map"> خريطة لمنطقة عسير</a></li>
+        </ul>
+      </div>
+    </div>
+	
+    <!-- End Header -->
+    <!-- Start Landing -->
+    <div class="landing">
+      <div class="container">
+        <div class="text">
+          <h1>أهلا بكم في الإدارة العامة للتدريب التقني والمهني بمنطقة عسير</h1>
+
+          <p>
+            تعتبر المؤسسة العامة للتدريب التقني والمهني الجهة الرائدة في مجال
+            التدريب في المملكة العربية السعودية, والكبري على مستوي منطقة الشرق
+            الأوسط
+          </p>
+        </div>
+        <div class="image">
+          <img src="imgs/FAYZ.PNG" width="1400" height="800" />
+        </div>
+      </div>
+      <a href="#articles" class="go-down">
+        <i class="fas fa-angle-double-down fa-2x"></i>
+      </a>
+    </div>
+    <!-- End Landing -->
+	
+	<!-- Start Videos -->
+    <div class="videos" id="map">
+      <h2 class="main-title">خريطة منطقة عسير</h2>
+	  	 <div   dir="rtl">
+		 <form class="container"  name="location" action="javascript:processCoords()">
+		<input type="submit" value="Go">
+ <input  type="text" name="lat">   Latitude
+ <input type="text" name="lon"> Longitude 
+  
+ 
+  </div>
+  
+             
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1930508.1868040997!2d42.827505849999994!3d19.084663550000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e0170a439633013%3A0x9b1f03b6118c1c1b!2z2YXZhti32YLYqSDYudiz2YrYsSDYp9mE2LPYudmI2K_Zitip!5e0!3m2!1sar!2s!4v1676227163039!5m2!1sar!2s" 
+            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          
+    </div>
+  </form>
+    <!-- End Videos -->
+
+    <!-- Start Team -->
+    <div class="team" id="college">
+      <h2 class="main-title">الكليات</h2>
+      <div class="container">
+        <div class="box" href="https://maps.app.goo.gl/F2Z61">
+          <div class="data">
+            <img src="imgs/college-02.jpg" alt="" />
+          </div>
+          <div class="info">
+            <h3>الإدارة العامة للتدريب التقني والمهني بمنطقة عسير</h3>
+            <a href="college-1.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+        <div class="box" href="https://maps.app.goo.gl/vTksx">
+          <div class="data">
+            <img src="imgs/college-01.jpg" alt="" />
+          </div>
+          <div class="info">
+            <h3>الكلية التقنية بأبها (جوجان)</h3>
+            <a href="college-2.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+
+        <div class="box" href="https://maps.app.goo.gl/v3B8f">
+          <div class="data">
+            <img src="imgs/college-03.jpg" alt="" />
+          </div>
+          <div class="info">
+            <h3>الكلية التقنية بخميس مشيط</h3>
+            <a href="college-3.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+        <div class="box" href="https://maps.app.goo.gl/DnDqi">
+          <div class="data">
+            <img src="imgs/college-04.jpg" alt="" />
+          </div>
+          <div class="info">
+            <h3>الكلية التقنية ببيشة</h3>
+            <a href="college-4.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+        <div class="box" href="https://maps.app.goo.gl/FWZo">
+          <div class="data">
+            <img src="imgs/college-05.jpg" alt="" />
+          </div>
+          <div class="info">
+            <h3>الكلية التقنية ببلقرن</h3>
+            <a href="college-5.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+        <div class="box" href="https://maps.app.goo.gl/2CqU">
+          <div class="data">
+            <img src="imgs/college-06.jpg" alt="" />
+          </div>
+          <div class="info">
+            <h3>الكلية التقنية بالنماص</h3>
+            <a href="college-6.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+        <div class="box" href="https://maps.app.goo.gl/vn1F">
+          <div class="data">
+            <img src="imgs/college-07.jpg" alt="" />
+          </div>
+          <div class="info">
+            <h3>الكلية التقنية بتنومة</h3>
+            <a href="college-7.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+        <div class="box" href="https://maps.app.goo.gl/Ahu2d">
+          <div class="data">
+            <img src="imgs/college-08.jpg" alt="" />
+          </div>
+          <div class="info">
+            <h3>الكلية التقنية بسراة عبيدة</h3>
+            <a href="college-8.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+        <div class="box" href="https://maps.app.goo.gl/FR5yc">
+          <div class="data">
+            <img src="imgs/college-09.jpg" alt="" />
+          </div>
+          <div class="info">
+            <h3>الكلية التقنية بظهران الجنوب</h3>
+            <a href="college-9.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+        <div
+          class="box"
+          href="https://www.google.com/maps/place//data=!4m2!3m1!1s0x46cef8225f986487:0x17600a13e725f5a?hl=ru"
+        >
+          <div class="data">
+            <img src="imgs/college-10.jpg" alt="https://maps.app.goo.gl/cmcK" />
+          </div>
+          <div class="info">
+            <h3>الكلية التقنية بأحد رفيدة</h3>
+            <a href="college-10.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+        <div class="box" href="">
+          <div class="data">
+            <img src="imgs/college-11.jpg" alt="" />
+          </div>
+          <div class="info">
+            <h3>الكلية التقنية برجال المع</h3>
+            <a href="college-11.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+        <div class="box" href="https://maps.app.goo.gl/Wv35">
+          <div class="data">
+            <img src="imgs/college-12.jpg" alt="" />
+          </div>
+          <div class="info">
+            <h3>الكلية التقنية الثانية بأبها</h3>
+            <a href="college-12.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+        <div class="box" href="https://maps.app.goo.gl/F2Z61">
+          <div class="data">
+            <img src="imgs/college-13.jpg" alt="" />
+          </div>
+          <div class="info">
+            <h3>الكلية التقنية بأبها (حي الموظفين)</h3>
+            <a href="college-13.html">تفاصيل أكثر</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="spikes"></div>
+    <!-- End Team -->
+
+    
+    <!-- Start Footer -->
+    <div class="footer">
+      <div class="container">
+        <div class="box">
+          <img src="imgs/FAYZ.PNG" class="footer-logo" width="1400" height="700" />
+		  
+        </div>
+        <div class="box">
+          <div class="line">
+            <i class="fas fa-map-marker-alt fa-fw"></i>
+            <div class="info">أبها ، شارع عبدالله محمد</div>
+          </div>
+          <div class="line">
+            <i class="far fa-clock fa-fw"></i>
+            <div class="info">ساعات العمل: 8:00 صباحاالى 11:00 مساء</div>
+          </div>
+          <div class="line">
+            <i class="fas fa-phone-volume fa-fw"></i>
+            <div class="info">
+              <span>+966 56 255 485</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
